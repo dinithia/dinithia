@@ -1,0 +1,32 @@
+# Session and token issuance policy.
+
+version: 1
+access_token:
+  algorithm: RS256
+  ttl_seconds: 900            # 15 minutes
+  include_claims:
+    - sub
+    - org_id
+    - sid
+    - amr
+    - roles
+  audience:
+    - rudder-api
+
+refresh_token:
+  ttl_seconds: 2592000        # 30 days
+  rotation: true
+  reuse_detection: true       # revoke family on reuse
+
+session:
+  idle_timeout_seconds: 28800 # 8 hours
+  absolute_timeout_seconds: 86400 # 24 hours
+  bind_user_agent: true
+  store: redis                # authoritative session store
+
+cookie:
+  name: rudder_session
+  same_site: lax
+  secure: true
+  http_only: true
+  path: /

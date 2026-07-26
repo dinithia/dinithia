@@ -1,0 +1,28 @@
+# Multi-factor authentication policy.
+
+version: 1
+required_for_roles:
+  - owner
+  - admin
+  - billing
+methods:
+  - id: totp
+    enabled: true
+    issuer_name: Rudder
+  - id: webauthn
+    enabled: true
+    user_verification: preferred
+  - id: email_otp
+    enabled: true
+    ttl_seconds: 600
+grace_period:
+  # Newly invited admins may enroll MFA within this window.
+  enrollment_days: 7
+step_up:
+  # Re-auth required for sensitive operations even with a valid session.
+  required_for:
+    - users:delete
+    - organizations:delete
+    - roles:assign
+    - billing:manage
+  max_amr_age_seconds: 300

@@ -1,0 +1,141 @@
+openapi: 3.1.0
+info:
+  title: Rudder Platform Authentication API
+  version: 0.1.0
+  description: Session and token endpoints for the Rudder platform.
+servers:
+  - url: /api/platform/v1/auth
+paths:
+  /login:
+    post:
+      operationId: login
+      summary: Authenticate with local credentials or start an OIDC login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: "#/components/schemas/PasswordLoginRequest"
+                - $ref: "#/components/schemas/OidcStartRequest"
+      responses:
+        "200":
+          description: Authenticated session issued
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthSession"
+        "401":
+          description: Invalid credentials
+  /logout:
+    post:
+      operationId: logout
+      summary: End the current session
+      security:
+        - bearerAuth: []
+      responses:
+        "204":
+          description: Session revoked
+  /token/refresh:
+    post:
+      operationId: refreshToken
+      summary: Rotate refresh token and issue a new access token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [refresh_token]
+              properties:
+                refresh_token:
+                  type: string
+      responses:
+        "200":
+          description: New tokens issued
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthSession"
+        "401":
+          description: Refresh token invalid or reused
+  /session:
+    get:
+      operationId: getSession
+      summary: Return the current authenticated session
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Current session
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SessionInfo"
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    PasswordLoginRequest:
+      type: object
+      required: [grant_type, email, password]
+      properties:
+        grant_type:
+          type: string
+          const: password
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          format: password
+        org_id:
+          type: string
+    OidcStartRequest:
+      type: object
+      required: [grant_type, provider_id]
+      properties:
+        grant_type:
+          type: string
+          const: oidc
+        provider_id:
+          type: string
+        redirect_uri:
+          type: string
+          format: uri
+    AuthSession:
+      type: object
+      required: [access_token, token_type, expires_in]
+      properties:
+        access_token:
+          type: string
+        refresh_token:
+          type: string
+        token_type:
+          type: string
+          const: Bearer
+        expires_in:
+          type: integer
+        session_id:
+          type: string
+    SessionInfo:
+      type: object
+      required: [sub, org_id, roles, sid]
+      properties:
+        sub:
+          type: string
+        org_id:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+        sid:
+          type: string
+        amr:
+          type: array
+          items:
+            type: string

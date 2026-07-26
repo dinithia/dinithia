@@ -1,0 +1,43 @@
+# User lifecycle state machine.
+
+version: 1
+states:
+  - invited
+  - active
+  - suspended
+  - deactivated
+  - deleted
+
+transitions:
+  - from: invited
+    to: active
+    action: accept_invite
+  - from: invited
+    to: deleted
+    action: revoke_invite
+  - from: active
+    to: suspended
+    action: suspend
+    required_permission: users:delete
+  - from: suspended
+    to: active
+    action: reinstate
+    required_permission: users:write
+  - from: active
+    to: deactivated
+    action: deactivate
+    required_permission: users:delete
+  - from: suspended
+    to: deactivated
+    action: deactivate
+    required_permission: users:delete
+  - from: deactivated
+    to: deleted
+    action: purge
+    required_permission: users:delete
+    requires_step_up: true
+
+invites:
+  ttl_seconds: 604800          # 7 days
+  max_pending_per_org: 100
+  default_role: member
