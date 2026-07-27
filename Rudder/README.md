@@ -6,7 +6,7 @@ Monorepo for Rudder, organized by deployable applications, reusable packages, pl
 
 ```text
 ├── apps/          # Deployable user-facing applications (web, mobile, desktop)
-├── services/      # Deployable backend services and APIs
+├── services/      # Deployable backend services (e.g. product-api)
 ├── agents/        # Deployable AI / automation agents and workers
 ├── packages/      # Reusable libraries shared across apps, services, and agents
 ├── platform/      # Platform infra + identity (authn, authz, user-management)

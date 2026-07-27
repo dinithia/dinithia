@@ -1,0 +1,123 @@
+openapi: 3.1.0
+info:
+  title: Rudder Product API
+  version: 0.1.0
+  description: Basic product API for tenants, customers, workflows, users, notifications, and audit.
+servers:
+  - url: http://localhost:3000
+paths:
+  /health:
+    get:
+      operationId: getHealth
+      summary: Service health
+      responses:
+        "200":
+          description: OK
+  /tenants:
+    get:
+      operationId: listTenants
+      summary: List tenants
+      responses:
+        "200":
+          description: Tenant list
+    post:
+      operationId: createTenant
+      summary: Create tenant
+      responses:
+        "201":
+          description: Created
+  /tenants/{id}:
+    get:
+      operationId: getTenant
+      summary: Get tenant
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Tenant
+    patch:
+      operationId: updateTenant
+      summary: Update tenant
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Updated tenant
+  /customers:
+    get:
+      operationId: listCustomers
+      summary: List customers
+      parameters:
+        - name: tenantId
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Customer list
+    post:
+      operationId: createCustomer
+      summary: Create customer
+      responses:
+        "201":
+          description: Created
+  /workflows:
+    get:
+      operationId: listWorkflows
+      summary: List workflows
+      responses:
+        "200":
+          description: Workflow list
+    post:
+      operationId: createWorkflow
+      summary: Create workflow
+      responses:
+        "201":
+          description: Created
+  /users:
+    get:
+      operationId: listUsers
+      summary: List users
+      responses:
+        "200":
+          description: User list
+    post:
+      operationId: createUser
+      summary: Create user
+      responses:
+        "201":
+          description: Created
+  /notifications:
+    get:
+      operationId: listNotifications
+      summary: List notifications
+      responses:
+        "200":
+          description: Notification list
+    post:
+      operationId: createNotification
+      summary: Create notification
+      responses:
+        "201":
+          description: Created
+  /audit:
+    get:
+      operationId: listAuditEvents
+      summary: List audit events
+      responses:
+        "200":
+          description: Audit list
+    post:
+      operationId: recordAuditEvent
+      summary: Record audit event
+      responses:
+        "201":
+          description: Created
