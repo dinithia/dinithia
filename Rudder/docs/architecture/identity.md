@@ -37,6 +37,9 @@ Protected handler
 | Policy-as-code | `platform/authorization/policies/` |
 | User / org schemas | `platform/user-management/` |
 | HTTP contracts | `contracts/openapi/platform/` |
+| Repo contributor directory | `team/` (users, roles, access policy) |
+
+The `team/` directory is the access registry for **this Git repository**: only active members with a defined role may view or change the repo. It complements (and does not replace) runtime org RBAC under `platform/`.
 
 ## Evolution
 

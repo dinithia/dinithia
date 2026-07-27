@@ -1,0 +1,15 @@
+# Team membership index.
+# Users must be listed here with status=active and a valid role to access the repo.
+
+version: 1
+policy:
+  require_directory_membership: true
+  require_defined_role: true
+  deny_by_default: true
+
+members:
+  - github: dinithia
+    role: maintainer
+    status: active
+    user_file: users/dinithia.yaml
+    joined_at: "2026-07-26"

@@ -1,0 +1,11 @@
+# Copy to <github-username>.yaml and fill in.
+# Then add an active entry to ../directory.yaml.
+
+github: REPLACE_WITH_GITHUB_USERNAME
+name: REPLACE_WITH_DISPLAY_NAME
+email: REPLACE_WITH_EMAIL
+role: contributor  # maintainer | contributor | reviewer | viewer
+status: active
+areas: []          # optional path ownership hints, e.g. ["apps/", "platform/"]
+joined_at: "YYYY-MM-DD"
+notes: ""

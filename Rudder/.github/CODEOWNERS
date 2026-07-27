@@ -1,3 +1,11 @@
-# Default owners for the Rudder monorepo.
-# Update these entries as teams take ownership of areas.
+# CODEOWNERS for the Rudder monorepo.
+# Default owners are active maintainers from team/directory.yaml.
+# Keep this file in sync when maintainer membership changes.
+
+# Default — all paths
 * @dinithia
+
+# Team directory — maintainers only
+/team/ @dinithia
+/team/directory.yaml @dinithia
+/team/roles/ @dinithia

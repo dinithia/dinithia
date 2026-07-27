@@ -14,6 +14,7 @@ REQUIRED_DIRS = (
     "contracts",
     "tests",
     "docs",
+    "team",
     "tools",
     ".github",
 )
