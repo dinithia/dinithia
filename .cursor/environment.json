@@ -1,6 +1,12 @@
 {
   "name": "Rudder monorepo",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+  "user": "ubuntu",
   "install": "bash .cursor/install.sh",
+  "start": "sudo service docker start",
   "terminals": [
     {
       "name": "product-api",
