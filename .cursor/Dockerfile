@@ -25,12 +25,13 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && corepack enable \
     && rm -rf /var/lib/apt/lists/*
 
-# Docker CE for nested container workflows (official Cloud Agent recipe)
+# Docker CE for nested container workflows (official Cloud Agent recipe).
+# Codename is pinned to noble to match FROM ubuntu:24.04 (avoids Dockerfile $ escaping).
 RUN install -m 0755 -d /etc/apt/keyrings \
     && curl --retry 3 --retry-delay 5 -fsSL https://download.docker.com/linux/ubuntu/gpg \
         | gpg --dearmor -o /etc/apt/keyrings/docker.gpg \
     && chmod a+r /etc/apt/keyrings/docker.gpg \
-    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$$VERSION_CODENAME") stable" \
+    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu noble stable" \
         | tee /etc/apt/sources.list.d/docker.list > /dev/null \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
