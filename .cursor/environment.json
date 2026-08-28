@@ -6,7 +6,7 @@
   },
   "user": "ubuntu",
   "install": "bash .cursor/install.sh",
-  "start": "sudo service docker start",
+  "start": "sudo service docker start || sudo dockerd >/tmp/dockerd.log 2>&1 & sleep 2; docker info >/dev/null",
   "terminals": [
     {
       "name": "product-api",
