@@ -1,0 +1,10 @@
+{
+  "name": "Rudder monorepo",
+  "install": "bash .cursor/install.sh",
+  "terminals": [
+    {
+      "name": "product-api",
+      "command": "cd Rudder && pnpm --filter @rudder/product-api dev"
+    }
+  ]
+}
