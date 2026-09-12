@@ -11,6 +11,7 @@ dev = [
   "pytest>=8.0",
   "ruff>=0.8",
   "mypy>=1.13",
+  "pyyaml>=6.0",
 ]
 
 # Add workspace members as Python packages are introduced, e.g.:

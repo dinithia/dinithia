@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rudder.local/schemas/platform/membership.json",
+  "title": "Membership",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "user_id", "org_id", "roles", "status", "created_at"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^mem_[A-Z0-9]+$"
+    },
+    "user_id": {
+      "type": "string",
+      "pattern": "^usr_[A-Z0-9]+$"
+    },
+    "org_id": {
+      "type": "string",
+      "pattern": "^org_[A-Z0-9]+$"
+    },
+    "roles": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_]*$"
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["invited", "active", "suspended", "removed"]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

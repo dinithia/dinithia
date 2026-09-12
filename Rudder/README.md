@@ -6,14 +6,15 @@ Monorepo for Rudder, organized by deployable applications, reusable packages, pl
 
 ```text
 ├── apps/          # Deployable user-facing applications (web, mobile, desktop)
-├── services/      # Deployable backend services and APIs
+├── services/      # Deployable backend services (e.g. product-api)
 ├── agents/        # Deployable AI / automation agents and workers
 ├── packages/      # Reusable libraries shared across apps, services, and agents
-├── platform/      # Platform infrastructure (infra, CI, observability, security)
+├── platform/      # Platform infra + identity (authn, authz, user-management)
 ├── data/          # Data pipelines, schemas, and seeds
 ├── contracts/     # Cross-cutting API and event contracts (OpenAPI, protobuf, events)
 ├── tests/         # Cross-cutting e2e, integration, and performance tests
 ├── docs/          # Architecture, guides, and ADRs
+├── team/          # Contributor directory — users, roles, repo access
 ├── tools/         # Internal developer tooling, scripts, and generators
 └── .github/       # GitHub Actions workflows and repository automation
 ```
@@ -24,8 +25,11 @@ Monorepo for Rudder, organized by deployable applications, reusable packages, pl
 |------|---------|
 | **Deployables** (`apps/`, `services/`, `agents/`) | Independently buildable and shippable units |
 | **Reusable packages** (`packages/`) | Shared libraries consumed by deployables |
-| **Platform** (`platform/`) | How we run, observe, and secure the system |
+| **Platform** (`platform/`) | How we run, observe, secure, and identity-manage the system |
+| **Team** (`team/`) | Who may view or change this repo (users + roles) |
 | **Domains** (`data/`, `contracts/`) | Cross-cutting domain artifacts and interfaces |
+
+Repo access is deny-by-default: contributors must be active in `team/directory.yaml` with a role from `team/roles/`. See `team/ACCESS.md`.
 
 ## Tooling
 

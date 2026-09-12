@@ -1,0 +1,64 @@
+# Built-in organization roles and permission bindings.
+
+version: 1
+roles:
+  - id: owner
+    name: Owner
+    system: true
+    description: Full control of the organization
+    permissions:
+      - users:read
+      - users:invite
+      - users:write
+      - users:delete
+      - roles:read
+      - roles:assign
+      - roles:manage
+      - organizations:read
+      - organizations:write
+      - organizations:delete
+      - billing:read
+      - billing:manage
+
+  - id: admin
+    name: Admin
+    system: true
+    description: Manage users, roles, and organization settings
+    permissions:
+      - users:read
+      - users:invite
+      - users:write
+      - users:delete
+      - roles:read
+      - roles:assign
+      - roles:manage
+      - organizations:read
+      - organizations:write
+      - billing:read
+
+  - id: member
+    name: Member
+    system: true
+    description: Standard member with read access to users and org
+    permissions:
+      - users:read
+      - roles:read
+      - organizations:read
+
+  - id: viewer
+    name: Viewer
+    system: true
+    description: Read-only access
+    permissions:
+      - users:read
+      - roles:read
+      - organizations:read
+
+  - id: billing
+    name: Billing
+    system: true
+    description: Billing and subscription management only
+    permissions:
+      - billing:read
+      - billing:manage
+      - organizations:read

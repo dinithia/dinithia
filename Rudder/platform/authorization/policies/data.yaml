@@ -1,0 +1,53 @@
+# Static data loaded alongside access.rego for local evaluation / tests.
+
+rudder:
+  rbac:
+    roles:
+      owner:
+        permissions:
+          - users:read
+          - users:invite
+          - users:write
+          - users:delete
+          - roles:read
+          - roles:assign
+          - roles:manage
+          - organizations:read
+          - organizations:write
+          - organizations:delete
+          - billing:read
+          - billing:manage
+      admin:
+        permissions:
+          - users:read
+          - users:invite
+          - users:write
+          - users:delete
+          - roles:read
+          - roles:assign
+          - roles:manage
+          - organizations:read
+          - organizations:write
+          - billing:read
+      member:
+        permissions:
+          - users:read
+          - roles:read
+          - organizations:read
+      viewer:
+        permissions:
+          - users:read
+          - roles:read
+          - organizations:read
+      billing:
+        permissions:
+          - billing:read
+          - billing:manage
+          - organizations:read
+  authn:
+    step_up_actions:
+      - users:delete
+      - organizations:delete
+      - roles:assign
+      - billing:manage
+    max_amr_age_seconds: 300

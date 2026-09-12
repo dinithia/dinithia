@@ -1,0 +1,59 @@
+# Canonical permission catalog for the Rudder platform.
+
+version: 1
+permissions:
+  # Users
+  - id: users:read
+    action: read
+    resource_type: users
+    description: View users and memberships in an organization
+  - id: users:invite
+    action: invite
+    resource_type: users
+    description: Invite users to an organization
+  - id: users:write
+    action: write
+    resource_type: users
+    description: Update user profiles and membership attributes
+  - id: users:delete
+    action: delete
+    resource_type: users
+    description: Suspend, deactivate, or remove users
+
+  # Roles
+  - id: roles:read
+    action: read
+    resource_type: roles
+    description: View roles and their permissions
+  - id: roles:assign
+    action: assign
+    resource_type: roles
+    description: Assign or revoke roles on memberships
+  - id: roles:manage
+    action: manage
+    resource_type: roles
+    description: Create and edit custom roles
+
+  # Organizations
+  - id: organizations:read
+    action: read
+    resource_type: organizations
+    description: View organization settings
+  - id: organizations:write
+    action: write
+    resource_type: organizations
+    description: Update organization settings
+  - id: organizations:delete
+    action: delete
+    resource_type: organizations
+    description: Delete an organization
+
+  # Billing
+  - id: billing:read
+    action: read
+    resource_type: billing
+    description: View billing and invoices
+  - id: billing:manage
+    action: manage
+    resource_type: billing
+    description: Manage subscription and payment methods

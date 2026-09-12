@@ -5,6 +5,8 @@ Cross-cutting interface definitions shared by producers and consumers.
 | Directory | Purpose |
 |-----------|---------|
 | `openapi/` | HTTP API specifications |
+| `openapi/platform/` | Authentication, authorization, and user-management APIs |
+| `openapi/product-api.yaml` | Product API (tenants, customers, workflows, users, notifications, audit) |
 | `protobuf/` | gRPC / protobuf schemas |
 | `events/` | Event and message contracts |
 

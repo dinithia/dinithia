@@ -1,0 +1,52 @@
+# Repository contributor roles for the Rudder team directory.
+# Users must be assigned exactly one of these roles to access the repo.
+
+version: 1
+roles:
+  - id: maintainer
+    name: Maintainer
+    description: Full administration of the Rudder repository and team directory
+    github_permission: admin
+    permissions:
+      - repo:read
+      - repo:write
+      - repo:merge
+      - repo:admin
+      - team:manage
+      - secrets:manage
+    can_view: true
+    can_change: true
+    can_manage_access: true
+
+  - id: contributor
+    name: Contributor
+    description: Develop features and fixes; open and update pull requests
+    github_permission: write
+    permissions:
+      - repo:read
+      - repo:write
+    can_view: true
+    can_change: true
+    can_manage_access: false
+
+  - id: reviewer
+    name: Reviewer
+    description: Review and approve changes; may push review fixes when needed
+    github_permission: write
+    permissions:
+      - repo:read
+      - repo:write
+      - repo:review
+    can_view: true
+    can_change: true
+    can_manage_access: false
+
+  - id: viewer
+    name: Viewer
+    description: Read-only access to repository contents
+    github_permission: read
+    permissions:
+      - repo:read
+    can_view: true
+    can_change: false
+    can_manage_access: false
